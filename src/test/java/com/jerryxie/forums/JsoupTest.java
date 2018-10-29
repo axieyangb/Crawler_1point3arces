@@ -9,6 +9,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Test;
 
+import com.jerryxie.forums.doubaofu.PackageInfoFetcher;
+
 public class JsoupTest {
 	Logger logger = Logger.getLogger(JsoupTest.class.getName());
 	Map<String, String> cookies = new HashMap<>();
@@ -44,6 +46,12 @@ public class JsoupTest {
 		} catch (IOException e) {
 			logger.warning(e.toString());
 		}
+	}
+	
+	@Test
+	public void testDoubaofuClass() {
+		PackageInfoFetcher fetcher  = new PackageInfoFetcher();
+		System.out.println(fetcher.getBase(451958));
 	}
 
 }
