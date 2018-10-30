@@ -13,33 +13,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class ForumCommonService {
     @Autowired
-    static SSLSocketFactory sslSocketFactory;
+    SSLSocketFactory sslSocketFactory;
 
-    public Connection getConnection(
-            String url) {
+    public Connection getConnection(String url) {
         return getConnection(url, null);
     }
 
-    public Connection getConnection(
-            String url,
-            Map<String, String> cookies) {
+    public Connection getConnection(String url, Map<String, String> cookies) {
         if (cookies == null) {
             cookies = getDefaultCookie();
         }
-        return Jsoup.connect(url)
-                .cookies(cookies)
-                .sslSocketFactory(
-                        sslSocketFactory);
+        return Jsoup.connect(url).cookies(cookies).sslSocketFactory(sslSocketFactory);
     }
 
     private Map<String, String> getDefaultCookie() {
         Map<String, String> cookies = new HashMap<>();
-        cookies.put(
-                ForumConstants.OAUTH_NAME,
-                ForumConstants.OAUTH_VALUE);
-        cookies.put(
-                ForumConstants.SALT_KEY,
-                ForumConstants.SALT_VALUE);
+        cookies.put(ForumConstants.OAUTH_NAME, ForumConstants.OAUTH_VALUE);
+        cookies.put(ForumConstants.SALT_KEY, ForumConstants.SALT_VALUE);
         return cookies;
     }
 }

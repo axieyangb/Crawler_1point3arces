@@ -1,15 +1,30 @@
 package com.jerryxie.forum.doubaofu.models;
 
-public class Package {
-    enum JobType {
-        OTHER, FULL_TIME, PART_TIME
+public class SalaryPackage {
+    @Override
+    public String toString() {
+        return "SalaryPackage [tid=" + tid + ", jobYear=" + jobYear + ", jobMonthStart=" + jobMonthStart
+                + ", jobMonthEnd=" + jobMonthEnd + ", jobSource=" + jobSource + ", positionCategory=" + positionCategory
+                + ", jobType=" + jobType + ", degree=" + degree + ", workingExperience=" + workingExperience
+                + ", status=" + status + ", companyName=" + companyName + ", base=" + base + ", rsu=" + rsu
+                + ", vestSchedule=" + vestSchedule + ", signOn=" + signOn + ", bouns=" + bouns + ", relocation="
+                + relocation + ", competeOffer=" + competeOffer + ", accept=" + accept + ", annualRefresh="
+                + annualRefresh + ", comment=" + comment + "]";
     }
 
-    enum MaxDegree {
+    public SalaryPackage() {
+
+    }
+
+    public enum JobType {
+        OTHER, FULL_TIME, INTERN, CONTRACTOR
+    }
+
+    public enum MaxDegree {
         BACHELOR, MASTER, DOCTOR
     }
 
-    enum Status {
+    public enum Status {
         UNKNOWN, FRESH_OUT_NO_EXPERIENCE, JOB_CHANGE, OTHER
     }
 
@@ -43,8 +58,7 @@ public class Package {
         return jobYear;
     }
 
-    public void setJobYear(
-            int jobYear) {
+    public void setJobYear(int jobYear) {
         this.jobYear = jobYear;
     }
 
@@ -52,8 +66,7 @@ public class Package {
         return jobMonthStart;
     }
 
-    public void setJobMonthStart(
-            int jobMonthStart) {
+    public void setJobMonthStart(int jobMonthStart) {
         this.jobMonthStart = jobMonthStart;
     }
 
@@ -61,8 +74,7 @@ public class Package {
         return jobMonthEnd;
     }
 
-    public void setJobMonthEnd(
-            int jobMonthEnd) {
+    public void setJobMonthEnd(int jobMonthEnd) {
         this.jobMonthEnd = jobMonthEnd;
     }
 
@@ -70,8 +82,7 @@ public class Package {
         return jobSource;
     }
 
-    public void setJobSource(
-            String jobSource) {
+    public void setJobSource(String jobSource) {
         this.jobSource = jobSource;
     }
 
@@ -79,8 +90,7 @@ public class Package {
         return positionCategory;
     }
 
-    public void setPositionCategory(
-            String positionCategory) {
+    public void setPositionCategory(String positionCategory) {
         this.positionCategory = positionCategory;
     }
 
@@ -88,8 +98,7 @@ public class Package {
         return jobType;
     }
 
-    public void setJobType(
-            JobType jobType) {
+    public void setJobType(JobType jobType) {
         this.jobType = jobType;
     }
 
@@ -97,8 +106,7 @@ public class Package {
         return degree;
     }
 
-    public void setDegree(
-            MaxDegree degree) {
+    public void setDegree(MaxDegree degree) {
         this.degree = degree;
     }
 
@@ -106,8 +114,7 @@ public class Package {
         return workingExperience;
     }
 
-    public void setWorkingExperience(
-            String workingExperience) {
+    public void setWorkingExperience(String workingExperience) {
         this.workingExperience = workingExperience;
     }
 
@@ -115,8 +122,7 @@ public class Package {
         return status;
     }
 
-    public void setStatus(
-            Status status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -124,8 +130,7 @@ public class Package {
         return companyName;
     }
 
-    public void setCompanyName(
-            String companyName) {
+    public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
@@ -149,8 +154,7 @@ public class Package {
         return vestSchedule;
     }
 
-    public void setVestSchedule(
-            String vestSchedule) {
+    public void setVestSchedule(String vestSchedule) {
         this.vestSchedule = vestSchedule;
     }
 
@@ -174,8 +178,7 @@ public class Package {
         return relocation;
     }
 
-    public void setRelocation(
-            int relocation) {
+    public void setRelocation(int relocation) {
         this.relocation = relocation;
     }
 
@@ -183,8 +186,7 @@ public class Package {
         return competeOffer;
     }
 
-    public void setCompeteOffer(
-            String competeOffer) {
+    public void setCompeteOffer(String competeOffer) {
         this.competeOffer = competeOffer;
     }
 
@@ -192,8 +194,7 @@ public class Package {
         return accept;
     }
 
-    public void setAccept(
-            boolean accept) {
+    public void setAccept(boolean accept) {
         this.accept = accept;
     }
 
@@ -201,8 +202,7 @@ public class Package {
         return annualRefresh;
     }
 
-    public void setAnnualRefresh(
-            int annualRefresh) {
+    public void setAnnualRefresh(int annualRefresh) {
         this.annualRefresh = annualRefresh;
     }
 
@@ -210,8 +210,7 @@ public class Package {
         return comment;
     }
 
-    public void setComment(
-            String comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
 
