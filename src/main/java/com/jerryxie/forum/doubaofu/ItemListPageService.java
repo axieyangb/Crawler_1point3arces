@@ -20,8 +20,6 @@ public class ItemListPageService {
     @Autowired
     ForumCommonService commonService;
 
-
-    
     public Document getItemListPage(int pageNum) {
         String url = String.format(baseUrl, pageNum);
         try {
@@ -46,7 +44,7 @@ public class ItemListPageService {
         });
         return tids;
     }
-    
+
     public int getTotalPageNum(Document doc) {
         Optional<Element> elementOptional = doc.select("input[name='custompage']").stream().findFirst();
         if (!elementOptional.isPresent()) {
