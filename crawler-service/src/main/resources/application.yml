@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: crawler_service_1point3acres
+server:
+  port: 8083

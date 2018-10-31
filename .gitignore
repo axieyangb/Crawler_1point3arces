@@ -2,5 +2,6 @@
 .metadata/
 .project
 .settings/
-/target
+*/target
 database/MongoDB/data/*
+.DS_Store
