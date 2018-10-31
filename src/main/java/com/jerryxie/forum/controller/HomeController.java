@@ -16,19 +16,20 @@ public class HomeController {
     PackageInfoFetcher packageFetcher;
     @Autowired
     ItemListPageFetcher itemListFetcher;
+
     @RequestMapping("/package")
     @ResponseBody
-    public SalaryPackage Index(int tid) {
+    public SalaryPackage index(int tid) {
         Document doc = packageFetcher.getPackagePage(tid);
         return packageFetcher.generatePackageData(doc, tid);
     }
+
     @RequestMapping("/doubaofu")
     @ResponseBody
-    public String Doubaofu(int pageNum) {
+    public String doubaofu(int pageNum) {
         Document doc = itemListFetcher.getItemListPage(pageNum);
         itemListFetcher.getTidList(doc);
         return "es";
     }
-    
-    
+
 }

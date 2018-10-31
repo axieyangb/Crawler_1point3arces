@@ -21,16 +21,10 @@ public class CustomizedSocketFactoryConfig {
     public SSLSocketFactory getSSLSocketFactory() {
 
         TrustManager tm = new X509TrustManager() {
-            public void checkClientTrusted(
-                    X509Certificate[] chain,
-                    String authType)
-                    throws CertificateException {
+            public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
             }
 
-            public void checkServerTrusted(
-                    X509Certificate[] chain,
-                    String authType)
-                    throws CertificateException {
+            public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
             }
 
             public X509Certificate[] getAcceptedIssuers() {
@@ -39,16 +33,10 @@ public class CustomizedSocketFactoryConfig {
         };
 
         try {
-            SSLContext sslContext = SSLContext
-                    .getInstance("TLS");
-            sslContext.init(null,
-                    new TrustManager[] {
-                            tm },
-                    new SecureRandom());
-            return sslContext
-                    .getSocketFactory();
-        } catch (KeyManagementException
-                | NoSuchAlgorithmException e) {
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, new TrustManager[] { tm }, new SecureRandom());
+            return sslContext.getSocketFactory();
+        } catch (KeyManagementException | NoSuchAlgorithmException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

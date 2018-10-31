@@ -32,11 +32,11 @@ public class ItemListPageFetcher {
 
     public List<String> getTidList(Document doc) {
         List<String> tids = new ArrayList<>();
-        Optional<Element>  tableOptional = doc.select("table#threadlisttableid").stream().findFirst();
-        if(!tableOptional.isPresent()) {
+        Optional<Element> tableOptional = doc.select("table#threadlisttableid").stream().findFirst();
+        if (!tableOptional.isPresent()) {
             return tids;
         }
-        tableOptional.get().select("tbody").stream().forEach(tbody->{
+        tableOptional.get().select("tbody").stream().forEach(tbody -> {
             System.out.println(tbody.attr("id"));
         });
         return tids;

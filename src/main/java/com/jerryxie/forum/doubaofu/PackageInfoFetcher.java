@@ -21,6 +21,8 @@ public class PackageInfoFetcher {
     private final String baseUrl = "https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=%d";
     private final String secretAmountQueryUrl = "https://www.1point3acres.com/bbs/forum.php"
             + "?mod=misc&action=protectsort&tid=%d&optionid=%d";
+    private final int oneThousand = 1000;
+    private final int oneMillion = 1000000;
     private Logger logger = Logger.getLogger(PackageInfoFetcher.class);
 
     @Autowired
@@ -70,17 +72,17 @@ public class PackageInfoFetcher {
             String str = commonService.getConnection(url).get().wholeText().toLowerCase().trim();
             if (str.endsWith("k")) {
                 str = str.substring(0, str.length() - 1);
-                times = 1000;
+                times = this.oneThousand;
             } else if (str.endsWith("m")) {
                 str = str.substring(0, str.length() - 1);
-                times = 1000000;
+                times = this.oneMillion;
             } else if (str.endsWith("share")) {
                 str = str.split(" ")[0];
                 isShareNum = true;
             }
             int amount = getNumByName(str);
-            if (times == 1 && amount > 0 && amount < 1000 && !isShareNum) {
-                times = 1000;
+            if (times == 1 && amount > 0 && amount < this.oneThousand && !isShareNum) {
+                times = this.oneThousand;
             }
 
             return amount * times;
@@ -155,20 +157,17 @@ public class PackageInfoFetcher {
             case "搬家费 relocation:":
                 pack.setRelocation(getNumByName(element.child(1).text()));
                 break;
+            default:
             }
-
         });
         pack.setBase(getBase(tid));
         pack.setRsu(getRSU(tid));
         pack.setSignOn(getSignOn(tid));
         pack.setBonus(getBonus(tid));
-        if (commentOptional.isPresent()) {
-            pack.setComment(commentOptional.get().wholeText());
-        }
-        if(titleOptional.isPresent()) {
-            pack.setTitle(titleOptional.get().attr("content"));
-        }
+        pack.setComment(commentOptional.isPresent() ? commentOptional.get().wholeText() : "");
+        pack.setTitle(titleOptional.isPresent() ? titleOptional.get().attr("content") : "Unknown");
         return pack;
+
     }
 
     private MaxDegree getMaxDegreeByName(String name) {
