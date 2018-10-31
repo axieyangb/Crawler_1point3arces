@@ -6,4 +6,5 @@
 database/MongoDB/data/*
 .DS_Store
 */bin
+.springBeans
 
