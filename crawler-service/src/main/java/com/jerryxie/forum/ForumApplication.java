@@ -2,14 +2,12 @@ package com.jerryxie.forum;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.jerryxie.forum.doubaofu.DoubaofuConstants;
-import com.jerryxie.forum.doubaofu.PackageInfoService;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class ForumApplication {
     private static Logger logger = Logger.getLogger(ForumApplication.class);
     public static void main(String[] args) {
