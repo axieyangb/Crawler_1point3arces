@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.jerryxie.forum.doubaofu.DoubaofuConstants;
-import com.jerryxie.forum.doubaofu.PackageInfoFetcher;
+import com.jerryxie.forum.doubaofu.PackageInfoService;
 
 @SpringBootApplication
 public class ForumApplication {

@@ -14,12 +14,14 @@ import org.springframework.stereotype.Service;
 import com.jerryxie.forum.ForumCommonService;
 
 @Service
-public class ItemListPageFetcher {
+public class ItemListPageService {
     private final String baseUrl = "https://www.1point3acres.com/bbs/forum.php?mod=forumdisplay&fid=237&sortid=320&sortid=320&page=%d";
-    private Logger logger = Logger.getLogger(ItemListPageFetcher.class);
+    private Logger logger = Logger.getLogger(ItemListPageService.class);
     @Autowired
     ForumCommonService commonService;
 
+
+    
     public Document getItemListPage(int pageNum) {
         String url = String.format(baseUrl, pageNum);
         try {
@@ -37,8 +39,20 @@ public class ItemListPageFetcher {
             return tids;
         }
         tableOptional.get().select("tbody").stream().forEach(tbody -> {
-            System.out.println(tbody.attr("id"));
+            String id = tbody.attr("id");
+            if (id.startsWith("normalthread")) {
+                tids.add(id.split("_")[1]);
+            }
         });
         return tids;
+    }
+    
+    public int getTotalPageNum(Document doc) {
+        Optional<Element> elementOptional = doc.select("input[name='custompage']").stream().findFirst();
+        if (!elementOptional.isPresent()) {
+            return 1;
+        }
+        String[] tokens = elementOptional.get().nextElementSibling().attr("title").split(" ");
+        return Integer.parseInt(tokens[1].trim());
     }
 }

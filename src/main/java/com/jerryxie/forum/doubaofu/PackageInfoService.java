@@ -1,6 +1,8 @@
 package com.jerryxie.forum.doubaofu;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.log4j.Logger;
@@ -10,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jerryxie.forum.ForumCommonService;
+import com.jerryxie.forum.comment.CommentService;
+import com.jerryxie.forum.comment.models.CommentDetail;
 import com.jerryxie.forum.doubaofu.models.SalaryPackage;
 import com.jerryxie.forum.doubaofu.models.SalaryPackage.Decision;
 import com.jerryxie.forum.doubaofu.models.SalaryPackage.JobType;
@@ -17,23 +21,30 @@ import com.jerryxie.forum.doubaofu.models.SalaryPackage.MaxDegree;
 import com.jerryxie.forum.doubaofu.models.SalaryPackage.Status;
 
 @Service
-public class PackageInfoFetcher {
-    private final String baseUrl = "https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=%d";
+public class PackageInfoService {
+    private final String baseUrl = "https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=%d&page=%d";
     private final String secretAmountQueryUrl = "https://www.1point3acres.com/bbs/forum.php"
             + "?mod=misc&action=protectsort&tid=%d&optionid=%d";
     private final int oneThousand = 1000;
     private final int oneMillion = 1000000;
-    private Logger logger = Logger.getLogger(PackageInfoFetcher.class);
+    private Logger logger = Logger.getLogger(PackageInfoService.class);
 
     @Autowired
     ForumCommonService commonService;
 
-    public PackageInfoFetcher() {
+    @Autowired
+    CommentService commentService;
+
+    public PackageInfoService() {
 
     }
 
     public Document getPackagePage(int tid) {
-        String url = String.format(baseUrl, tid);
+        return getPackagePage(tid, 1);
+    }
+
+    public Document getPackagePage(int tid, int pageNum) {
+        String url = String.format(baseUrl, tid, pageNum);
         try {
             return commonService.getConnection(url).get();
         } catch (IOException e) {
@@ -62,6 +73,17 @@ public class PackageInfoFetcher {
             logger.error(e.toString());
         }
         return "N/A";
+    }
+
+    public List<CommentDetail> getComments(Document doc, int tid) {
+        List<CommentDetail> commentList = new ArrayList<>();
+        int totalPageNum = commentService.getTotalPageNum(doc);
+        commentList.addAll(commentService.getAllComments(doc));
+        for (int i = 2; i <= totalPageNum; i++) {
+            Document pageOfComment = this.getPackagePage(tid, i);
+            commentList.addAll(commentService.getAllComments(pageOfComment));
+        }
+        return commentList;
     }
 
     private int getSecretNum(int tid, int optionId) {
@@ -166,6 +188,7 @@ public class PackageInfoFetcher {
         pack.setBonus(getBonus(tid));
         pack.setComment(commentOptional.isPresent() ? commentOptional.get().wholeText() : "");
         pack.setTitle(titleOptional.isPresent() ? titleOptional.get().attr("content") : "Unknown");
+        pack.setComments(getComments(doc, tid));
         return pack;
 
     }

@@ -1,5 +1,10 @@
 package com.jerryxie.forum.doubaofu.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.jerryxie.forum.comment.models.CommentDetail;
+
 public class SalaryPackage {
 
     public String getCurrentWork() {
@@ -11,7 +16,7 @@ public class SalaryPackage {
     }
 
     public SalaryPackage() {
-
+        this.comments = new ArrayList<>();
     }
 
     public enum JobType {
@@ -51,6 +56,7 @@ public class SalaryPackage {
     private String bonus;
 
     private int relocation;
+    private List<CommentDetail> comments;
 
     public int getTid() {
         return tid;
@@ -228,6 +234,10 @@ public class SalaryPackage {
         this.comment = comment;
     }
 
+    public List<CommentDetail> getComments() {
+        return comments;
+    }
+
     @Override
     public String toString() {
         return "SalaryPackage [tid=" + tid + ", jobYear=" + jobYear + ", jobMonthStart=" + jobMonthStart
@@ -236,8 +246,12 @@ public class SalaryPackage {
                 + ", workingExperience=" + workingExperience + ", status=" + status + ", companyName=" + companyName
                 + ", currentWork=" + currentWork + ", area=" + area + ", base=" + base + ", rsu=" + rsu
                 + ", vestSchedule=" + vestSchedule + ", signOn=" + signOn + ", bonus=" + bonus + ", relocation="
-                + relocation + ", competeOffer=" + competeOffer + ", accept=" + accept + ", annualRefresh="
-                + annualRefresh + ", comment=" + comment + "]";
+                + relocation + ", comments=" + comments + ", competeOffer=" + competeOffer + ", accept=" + accept
+                + ", annualRefresh=" + annualRefresh + ", comment=" + comment + "]";
+    }
+
+    public void setComments(List<CommentDetail> comments) {
+        this.comments = comments;
     }
 
     public String getTitle() {
