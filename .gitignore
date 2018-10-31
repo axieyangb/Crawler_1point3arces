@@ -5,3 +5,5 @@
 */target
 database/MongoDB/data/*
 .DS_Store
+*/bin
+
