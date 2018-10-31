@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.jerryxie.forum.CustomizedSocketFactoryConfig;
+import com.jerryxie.forum.ForumCommonService;
 import com.jerryxie.forum.doubaofu.PackageInfoFetcher;
 
 @RunWith(SpringRunner.class)
@@ -24,7 +25,10 @@ public class JsoupTest {
 
     @TestConfiguration
     static class CustomizedSocketFactoryConfigTest extends CustomizedSocketFactoryConfig {
-
+        @Bean
+        public ForumCommonService getForumCommonService() {
+            return new ForumCommonService();
+        }
     }
 
     @Autowired
@@ -57,7 +61,7 @@ public class JsoupTest {
     private Document getDoc(String url) {
         Document doc;
         try {
-            doc = Jsoup.connect(url).sslSocketFactory(sslFactory).cookies(cookies).maxBodySize(0).get();
+            doc = Jsoup.connect(url).sslSocketFactory(sslFactory).cookies(cookies).get();
             return doc;
         } catch (IOException e) {
             logger.warning(e.toString());
@@ -74,10 +78,10 @@ public class JsoupTest {
 
     @Test
     public void testDoubaofuClass() {
-        String url = "https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=453779";
+        String url = "https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=441132";
         Document doc = getDoc(url);
         System.out.println(doc.select("div.typeoption").html());
-        System.out.println(fetcher.generatePackageData(doc));
+        System.out.println(fetcher.generatePackageData(doc, 441132));
     }
 
 }

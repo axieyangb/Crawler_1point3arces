@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.jerryxie.forum.ForumCommonService;
 import com.jerryxie.forum.doubaofu.models.SalaryPackage;
+import com.jerryxie.forum.doubaofu.models.SalaryPackage.Decision;
 import com.jerryxie.forum.doubaofu.models.SalaryPackage.JobType;
 import com.jerryxie.forum.doubaofu.models.SalaryPackage.MaxDegree;
 import com.jerryxie.forum.doubaofu.models.SalaryPackage.Status;
@@ -39,20 +40,64 @@ public class PackageInfoFetcher {
         return null;
     }
 
-    public String getBase(int tid) {
-        String url = String.format(secretAmountQueryUrl, tid, DoubaofuConstants.BASE_ID);
+    public int getBase(int tid) {
+        return getSecretNum(tid, DoubaofuConstants.BASE_ID);
+    }
+
+    public int getSignOn(int tid) {
+        return getSecretNum(tid, DoubaofuConstants.SIGN_ON_ID);
+    }
+
+    public int getRSU(int tid) {
+        return getSecretNum(tid, DoubaofuConstants.RSU_ID);
+    }
+
+    public String getBonus(int tid) {
+        String url = String.format(secretAmountQueryUrl, tid, DoubaofuConstants.BONUS_ID);
         try {
             return commonService.getConnection(url).get().wholeText();
         } catch (IOException e) {
             logger.error(e.toString());
         }
-        return null;
+        return "N/A";
     }
 
-    public SalaryPackage generatePackageData(Document doc) {
+    private int getSecretNum(int tid, int optionId) {
+        String url = String.format(secretAmountQueryUrl, tid, optionId);
+        int times = 1;
+        boolean isShareNum = false;
+        try {
+            String str = commonService.getConnection(url).get().wholeText().toLowerCase().trim();
+            if (str.endsWith("k")) {
+                str = str.substring(0, str.length() - 1);
+                times = 1000;
+            } else if (str.endsWith("m")) {
+                str = str.substring(0, str.length() - 1);
+                times = 1000000;
+            } else if (str.endsWith("share")) {
+                str = str.split(" ")[0];
+                isShareNum = true;
+            }
+            int amount = getNumByName(str);
+            if (times == 1 && amount > 0 && amount < 1000 && !isShareNum) {
+                times = 1000;
+            }
+
+            return amount * times;
+
+        } catch (IOException e) {
+            logger.error(e.toString());
+        }
+        return -1;
+    }
+
+    public SalaryPackage generatePackageData(Document doc, int tid) {
         SalaryPackage pack = new SalaryPackage();
+        pack.setTid(tid);
         Optional<Element> tableOptional = doc.select("div.typeoption").stream().findFirst();
-        if (tableOptional.isEmpty()) {
+        Optional<Element> commentOptional = doc.select("div.t_fsz").stream().findFirst();
+        Optional<Element> titleOptional = doc.select("meta[name='description']").stream().findFirst();
+        if (!tableOptional.isPresent()) {
             return pack;
         }
         Element table = tableOptional.get();
@@ -86,8 +131,43 @@ public class PackageInfoFetcher {
             case "应届or在职跳槽:":
                 pack.setStatus(getStatusByName(element.child(1).text()));
                 break;
+            case "具体工作，组，tech stack等:":
+                pack.setCurrentWork(element.child(1).text());
+                break;
+            case "公司名称:":
+                pack.setCompanyName(element.child(1).text());
+                break;
+            case "地区:":
+                pack.setArea(element.child(1).text());
+                break;
+            case "Equity Vesting schedule:":
+                pack.setVestSchedule(element.child(1).text());
+                break;
+            case "是否满意，打算去嘛:":
+                pack.setAccept(getDecisionByName(element.child(1).text()));
+                break;
+            case "谈判，其他手头offer，目前工资对比:":
+                pack.setCompeteOffer(element.child(1).text());
+                break;
+            case "annual refresh:":
+                pack.setAnnualRefresh(getNumByName(element.child(1).text()));
+                break;
+            case "搬家费 relocation:":
+                pack.setRelocation(getNumByName(element.child(1).text()));
+                break;
             }
+
         });
+        pack.setBase(getBase(tid));
+        pack.setRsu(getRSU(tid));
+        pack.setSignOn(getSignOn(tid));
+        pack.setBonus(getBonus(tid));
+        if (commentOptional.isPresent()) {
+            pack.setComment(commentOptional.get().wholeText());
+        }
+        if(titleOptional.isPresent()) {
+            pack.setTitle(titleOptional.get().attr("content"));
+        }
         return pack;
     }
 
@@ -112,6 +192,25 @@ public class PackageInfoFetcher {
             return Status.OTHER;
         default:
             return Status.UNKNOWN;
+        }
+    }
+
+    private int getNumByName(String name) {
+        try {
+            return (int) Double.parseDouble(name.trim());
+        } catch (NumberFormatException ex) {
+            return -1;
+        }
+    }
+
+    private Decision getDecisionByName(String name) {
+        switch (name) {
+        case "去":
+            return Decision.ACCEPT;
+        case "不去":
+            return Decision.NOT_ACCEPT;
+        default:
+            return Decision.UNKNOWN;
         }
     }
 

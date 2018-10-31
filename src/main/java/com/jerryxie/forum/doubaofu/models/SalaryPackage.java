@@ -1,15 +1,13 @@
 package com.jerryxie.forum.doubaofu.models;
 
 public class SalaryPackage {
-    @Override
-    public String toString() {
-        return "SalaryPackage [tid=" + tid + ", jobYear=" + jobYear + ", jobMonthStart=" + jobMonthStart
-                + ", jobMonthEnd=" + jobMonthEnd + ", jobSource=" + jobSource + ", positionCategory=" + positionCategory
-                + ", jobType=" + jobType + ", degree=" + degree + ", workingExperience=" + workingExperience
-                + ", status=" + status + ", companyName=" + companyName + ", base=" + base + ", rsu=" + rsu
-                + ", vestSchedule=" + vestSchedule + ", signOn=" + signOn + ", bouns=" + bouns + ", relocation="
-                + relocation + ", competeOffer=" + competeOffer + ", accept=" + accept + ", annualRefresh="
-                + annualRefresh + ", comment=" + comment + "]";
+
+    public String getCurrentWork() {
+        return currentWork;
+    }
+
+    public void setCurrentWork(String currentWork) {
+        this.currentWork = currentWork;
     }
 
     public SalaryPackage() {
@@ -28,10 +26,15 @@ public class SalaryPackage {
         UNKNOWN, FRESH_OUT_NO_EXPERIENCE, JOB_CHANGE, OTHER
     }
 
+    public enum Decision {
+        UNKNOWN, ACCEPT, NOT_ACCEPT
+    }
+
     private int tid;
     private int jobYear;
     private int jobMonthStart;
     private int jobMonthEnd;
+    private String title;
     private String jobSource;
     private String positionCategory;
     private JobType jobType;
@@ -39,11 +42,14 @@ public class SalaryPackage {
     private String workingExperience;
     private Status status;
     private String companyName;
+    private String currentWork;
+    private String area;
     private int base;
     private int rsu;
     private String vestSchedule;
     private int signOn;
-    private int bouns;
+    private String bonus;
+
     private int relocation;
 
     public int getTid() {
@@ -96,6 +102,14 @@ public class SalaryPackage {
 
     public JobType getJobType() {
         return jobType;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 
     public void setJobType(JobType jobType) {
@@ -166,12 +180,12 @@ public class SalaryPackage {
         this.signOn = signOn;
     }
 
-    public int getBouns() {
-        return bouns;
+    public String getBonus() {
+        return bonus;
     }
 
-    public void setBouns(int bouns) {
-        this.bouns = bouns;
+    public void setBonus(String bonus) {
+        this.bonus = bonus;
     }
 
     public int getRelocation() {
@@ -190,11 +204,11 @@ public class SalaryPackage {
         this.competeOffer = competeOffer;
     }
 
-    public boolean isAccept() {
+    public Decision getAccept() {
         return accept;
     }
 
-    public void setAccept(boolean accept) {
+    public void setAccept(Decision accept) {
         this.accept = accept;
     }
 
@@ -214,8 +228,28 @@ public class SalaryPackage {
         this.comment = comment;
     }
 
+    @Override
+    public String toString() {
+        return "SalaryPackage [tid=" + tid + ", jobYear=" + jobYear + ", jobMonthStart=" + jobMonthStart
+                + ", jobMonthEnd=" + jobMonthEnd + ", title=" + title + ", jobSource=" + jobSource
+                + ", positionCategory=" + positionCategory + ", jobType=" + jobType + ", degree=" + degree
+                + ", workingExperience=" + workingExperience + ", status=" + status + ", companyName=" + companyName
+                + ", currentWork=" + currentWork + ", area=" + area + ", base=" + base + ", rsu=" + rsu
+                + ", vestSchedule=" + vestSchedule + ", signOn=" + signOn + ", bonus=" + bonus + ", relocation="
+                + relocation + ", competeOffer=" + competeOffer + ", accept=" + accept + ", annualRefresh="
+                + annualRefresh + ", comment=" + comment + "]";
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     private String competeOffer;
-    private boolean accept;
+    private Decision accept;
     private int annualRefresh;
     private String comment;
 
