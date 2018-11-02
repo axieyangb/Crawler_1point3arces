@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class PackageInfoService {
             + "?mod=misc&action=protectsort&tid=%d&optionid=%d";
     private final int oneThousand = 1000;
     private final int oneMillion = 1000000;
-    private Logger logger = Logger.getLogger(PackageInfoService.class);
+    private Logger logger = LogManager.getLogger(PackageInfoService.class);
 
     @Autowired
     ForumCommonService commonService;

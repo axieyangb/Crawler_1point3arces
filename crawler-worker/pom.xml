@@ -1,11 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>crawler-service</groupId>
-	<artifactId>crawler-service</artifactId>
+
+	<groupId>crawler-worker</groupId>
+	<artifactId>crawler-worker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
+	<name>crawler-worker</name>
+	<description>Backend worker to run the crawler</description>
+
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
 		<spring-cloud.version>2.0.2.RELEASE</spring-cloud.version>
 		<spring-boot.version>2.1.0.RELEASE</spring-boot.version>
 	</properties>
@@ -21,48 +30,59 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
 	<dependencies>
-		<!-- Spring framework -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-data-mongodb</artifactId> 
+			</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-log4j2</artifactId>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/junit/junit -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 			<version>${spring-cloud.version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+			<version>${spring-cloud.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+			<version>${spring-cloud.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<version>2.0.2.RELEASE</version>
+		</dependency>
+
+
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
-		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-			<version>1.11.3</version>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+
 	<build>
 		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -87,7 +107,7 @@
 					</dependency>
 				</dependencies>
 				<configuration>
-					<imageName>axieyangb/crawler-service</imageName>
+					<imageName>axieyangb/crawler-worker</imageName>
 					<baseImage>java</baseImage>
 					<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
 					<!-- copy the service's jar file from target into the root directory 
@@ -99,14 +119,6 @@
 							<include>${project.build.finalName}.jar</include>
 						</resource>
 					</resources>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.7.0</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -138,4 +150,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

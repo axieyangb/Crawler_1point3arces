@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import com.jerryxie.forum.ForumCommonService;
 @Service
 public class ItemListPageService {
     private final String baseUrl = "https://www.1point3acres.com/bbs/forum.php?mod=forumdisplay&fid=237&sortid=320&sortid=320&page=%d";
-    private Logger logger = Logger.getLogger(ItemListPageService.class);
+    private Logger logger = LogManager.getLogger(ItemListPageService.class);
     @Autowired
     ForumCommonService commonService;
 

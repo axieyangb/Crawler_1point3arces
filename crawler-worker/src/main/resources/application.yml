@@ -1,8 +1,8 @@
 spring:
   application:
-    name: CRAWLER-SERVICE
+    name: CRAWLER-WORKER
 server:
-  port: 8083
+  port: 8084
 eureka:
   client:
     fetch-registry: true
