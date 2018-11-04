@@ -10,7 +10,7 @@ services:
     networks:
       - crawler-net
     entrypoint: ["./wait_unit_healthy.sh","eureka-server","8761","crawler-service-0.0.1-SNAPSHOT.jar"] 
-  crawler-crwaler:
+  crawler-worker:
     image: axieyangb/crawler-worker:latest
     ports:
       - "8084:8084"
