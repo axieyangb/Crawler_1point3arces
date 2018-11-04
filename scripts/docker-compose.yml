@@ -1,7 +1,7 @@
 version: '3'
 services:
   crawler-service:
-          image: hs01:443/crawler-service:latest
+    image: hs01:443/crawler-service:latest
     environment:
       - OAUTH_VALUE=9a597bPpQ%2BWfCOWpN6kYdzwl%2FKiL5PyqKb40256n0Nwi6hMzqj8P1nnYQBIk%2Fqfi8dgthDLi8Yzm%2B%2FV337bkvDXeFqY
       - SALT_VALUE=V0h0TUbW
