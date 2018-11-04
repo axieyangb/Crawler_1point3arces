@@ -2,23 +2,23 @@ version: '3'
 services:
   crawler-service:
     image: axieyangb/crawler-service:latest
-    ports: 
-      - "8083:8083"
     environment:
       - OAUTH_VALUE=9a597bPpQ%2BWfCOWpN6kYdzwl%2FKiL5PyqKb40256n0Nwi6hMzqj8P1nnYQBIk%2Fqfi8dgthDLi8Yzm%2B%2FV337bkvDXeFqY
       - SALT_VALUE=V0h0TUbW
-    depends_on:
-      - eureka-server
+    volumes:
+      - ./wait_unit_healthy.sh:/wait_unit_healthy.sh
     networks:
       - crawler-net
+    entrypoint: ["./wait_unit_healthy.sh","eureka-server","8761","crawler-service-0.0.1-SNAPSHOT.jar"] 
   crawler-crwaler:
     image: axieyangb/crawler-worker:latest
     ports:
       - "8084:8084"
-    depends_on:
-      - eureka-server
     networks:
       - crawler-net
+    volumes:
+      - ./wait_unit_healthy.sh:/wait_unit_healthy.sh
+    entrypoint: ["./wait_unit_healthy.sh","eureka-server","8761","crawler-worker-0.0.1-SNAPSHOT.jar"]
   eureka-server:
     image: axieyangb/eureka-server:latest
     ports:

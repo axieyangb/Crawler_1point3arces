@@ -87,7 +87,7 @@
 					</dependency>
 				</dependencies>
 				<configuration>
-					<imageName>axieyangb/crawler-service</imageName>
+					<imageName>hs01:443/crawler-service</imageName>
 					<baseImage>java</baseImage>
 					<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
 					<!-- copy the service's jar file from target into the root directory 

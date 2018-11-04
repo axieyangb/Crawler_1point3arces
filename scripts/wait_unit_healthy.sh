@@ -1,7 +1,13 @@
 #!/bin/bash
-while ! nc -z $1 $2;
+status=$(curl -I HEAD $1:$2 | awk '{if(NR==1){print $2}}');
+while true;
 do
-   echo sleeping;
-   sleep 1;
+  if [ "$status" == "200" ];
+  then 
+      echo Connected!;
+      break;
+  fi
+  status=$(curl -I HEAD $1:$2 | awk '{if(NR==1){print $2}}');
 done;
-echo Connected!;
+
+java -jar $3
