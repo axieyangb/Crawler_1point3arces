@@ -1,6 +1,10 @@
 spring:
   application:
     name: CRAWLER-WORKER
+  data:
+    mongodb:
+      host: hs01
+      database: crawler_1point3arces
 server:
   port: 8084
 eureka:
@@ -14,3 +18,19 @@ feign:
       default:
         connectTimeout: 160000000
         readTimeout: 160000000
+  hystrix:
+    enabled: true
+
+ribbon:
+  eureka:
+    enabled: true
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+  ReadTimeout: 10000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000

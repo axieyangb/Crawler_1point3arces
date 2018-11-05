@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jerryxie.forum.worker.domain.SalaryPackage;
 
-@FeignClient(value = "crawler-service:8083")
+@FeignClient(value = "crawler-service:8083", fallbackFactory = SalaryPackageFallbackFactory.class)
 public interface SalaryPackageService {
     @RequestMapping(value = "/doubaofu/detail/{tid}", method = RequestMethod.GET)
     SalaryPackage findPackageByDetail(@PathVariable(name = "tid", required = true) int tid);
