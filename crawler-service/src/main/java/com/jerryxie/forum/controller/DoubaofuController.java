@@ -53,4 +53,11 @@ public class DoubaofuController {
         }
     }
 
+    @RequestMapping(value = "pagenum", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public int getPageNum() {
+        Document doc = itemListFetcher.getItemListPage(1);
+        return itemListFetcher.getTotalPageNum(doc);
+    }
+
 }

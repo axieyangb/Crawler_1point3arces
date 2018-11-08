@@ -6,34 +6,25 @@ services:
     environment:
       - OAUTH_VALUE=9a597bPpQ%2BWfCOWpN6kYdzwl%2FKiL5PyqKb40256n0Nwi6hMzqj8P1nnYQBIk%2Fqfi8dgthDLi8Yzm%2B%2FV337bkvDXeFqY
       - SALT_VALUE=V0h0TUbW
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
     volumes:
       - ./wait_unit_healthy.sh:/wait_unit_healthy.sh
-    networks:
-      - crawler-net
     entrypoint: ["./wait_unit_healthy.sh","eureka-server","8761","crawler-service-0.0.1-SNAPSHOT.jar"] 
+    ports:
+      - "8083:8083"
   crawler-worker:
     image: hs01:443/crawler-worker:latest
     user: root
-    ports:
-      - "8084:8084"
-    networks:
-      - crawler-net
     volumes:
       - ./wait_unit_healthy.sh:/wait_unit_healthy.sh
     entrypoint: ["./wait_unit_healthy.sh","eureka-server","8761","crawler-worker-0.0.1-SNAPSHOT.jar"]
-    dns:
-      - 10.0.0.1
   eureka-server:
     image: hs01:443/eureka-server:latest
     user: root
-    ports:
-      - "8761:8761"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8761"]
       interval: 10s
       timeout: 10s
       retries: 5
-    networks:
-      - crawler-net
-networks:
-  crawler-net:
+    ports: 
+      - "8761:8761"

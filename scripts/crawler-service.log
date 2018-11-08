@@ -1,0 +1,58 @@
+2018-11-08 00:08:27.266  INFO 47633 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'configurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$a8c1d538] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.0.RELEASE)
+
+2018-11-08 00:08:27.804  INFO 47633 --- [           main] c.j.f.ForumApplication                   : No active profile set, falling back to default profiles: default
+2018-11-08 00:08:29.392  WARN 47633 --- [           main] o.s.b.a.e.EndpointId                     : Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+2018-11-08 00:08:29.966  INFO 47633 --- [           main] o.s.c.c.s.GenericScope                   : BeanFactory id=cb7bb166-65f3-3a2b-b8aa-c735aa197d30
+2018-11-08 00:08:30.172  INFO 47633 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$a8c1d538] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-11-08 00:08:30.872  INFO 47633 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8083 (http)
+2018-11-08 00:08:30.926  INFO 47633 --- [           main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2018-11-08 00:08:30.928  INFO 47633 --- [           main] o.a.c.c.StandardEngine                   : Starting Servlet Engine: Apache Tomcat/9.0.12
+2018-11-08 00:08:30.954  INFO 47633 --- [           main] o.a.c.c.AprLifecycleListener             : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/jerxie/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2018-11-08 00:08:31.122  INFO 47633 --- [           main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2018-11-08 00:08:31.122  INFO 47633 --- [           main] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 3274 ms
+2018-11-08 00:08:31.329  WARN 47633 --- [           main] c.n.c.s.URLConfigurationSource           : No URLs will be polled as dynamic configuration sources.
+2018-11-08 00:08:31.330  INFO 47633 --- [           main] c.n.c.s.URLConfigurationSource           : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2018-11-08 00:08:31.349  INFO 47633 --- [           main] c.n.c.DynamicPropertyFactory             : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@4b5189ac
+2018-11-08 00:08:32.087  INFO 47633 --- [           main] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-11-08 00:08:32.088  INFO 47633 --- [           main] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'webMvcMetricsFilter' to: [/*]
+2018-11-08 00:08:32.088  INFO 47633 --- [           main] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-11-08 00:08:32.088  INFO 47633 --- [           main] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'formContentFilter' to: [/*]
+2018-11-08 00:08:32.088  INFO 47633 --- [           main] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'requestContextFilter' to: [/*]
+2018-11-08 00:08:32.088  INFO 47633 --- [           main] o.s.b.w.s.FilterRegistrationBean         : Mapping filter: 'httpTraceFilter' to: [/*]
+2018-11-08 00:08:32.089  INFO 47633 --- [           main] o.s.b.w.s.ServletRegistrationBean        : Servlet dispatcherServlet mapped to [/]
+2018-11-08 00:08:32.441  WARN 47633 --- [           main] c.n.c.s.URLConfigurationSource           : No URLs will be polled as dynamic configuration sources.
+2018-11-08 00:08:32.442  INFO 47633 --- [           main] c.n.c.s.URLConfigurationSource           : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2018-11-08 00:08:32.806  INFO 47633 --- [           main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'applicationTaskExecutor'
+2018-11-08 00:08:34.034  INFO 47633 --- [           main] o.s.b.a.e.w.EndpointLinksResolver        : Exposing 2 endpoint(s) beneath base path '/actuator'
+2018-11-08 00:08:34.268  INFO 47633 --- [           main] o.s.c.n.e.InstanceInfoFactory            : Setting initial instance status as: STARTING
+2018-11-08 00:08:34.377  INFO 47633 --- [           main] c.n.d.DiscoveryClient                    : Initializing Eureka in region us-east-1
+2018-11-08 00:08:34.599  INFO 47633 --- [           main] c.n.d.p.DiscoveryJerseyProvider          : Using JSON encoding codec LegacyJacksonJson
+2018-11-08 00:08:34.600  INFO 47633 --- [           main] c.n.d.p.DiscoveryJerseyProvider          : Using JSON decoding codec LegacyJacksonJson
+2018-11-08 00:08:35.009  INFO 47633 --- [           main] c.n.d.p.DiscoveryJerseyProvider          : Using XML encoding codec XStreamXml
+2018-11-08 00:08:35.009  INFO 47633 --- [           main] c.n.d.p.DiscoveryJerseyProvider          : Using XML decoding codec XStreamXml
+2018-11-08 00:08:35.416  INFO 47633 --- [           main] c.n.d.s.r.a.ConfigClusterResolver        : Resolving eureka endpoints via configuration
+2018-11-08 00:08:35.476  INFO 47633 --- [           main] c.n.d.DiscoveryClient                    : Disable delta property : false
+2018-11-08 00:08:35.477  INFO 47633 --- [           main] c.n.d.DiscoveryClient                    : Single vip registry refresh property : null
+2018-11-08 00:08:35.478  INFO 47633 --- [           main] c.n.d.DiscoveryClient                    : Force full registry fetch : false
+2018-11-08 00:08:35.479  INFO 47633 --- [           main] c.n.d.DiscoveryClient                    : Application is null : false
+2018-11-08 00:08:35.479  INFO 47633 --- [           main] c.n.d.DiscoveryClient                    : Registered Applications size is zero : true
+2018-11-08 00:08:35.480  INFO 47633 --- [           main] c.n.d.DiscoveryClient                    : Application version is -1: true
+2018-11-08 00:08:35.480  INFO 47633 --- [           main] c.n.d.DiscoveryClient                    : Getting all instance registry info from the eureka server
+2018-11-08 00:08:36.054  INFO 47633 --- [           main] c.n.d.DiscoveryClient                    : The response status is 200
+2018-11-08 00:08:36.057  INFO 47633 --- [           main] c.n.d.DiscoveryClient                    : Starting heartbeat executor: renew interval is: 30
+2018-11-08 00:08:36.062  INFO 47633 --- [           main] c.n.d.InstanceInfoReplicator             : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2018-11-08 00:08:36.068  INFO 47633 --- [           main] c.n.d.DiscoveryClient                    : Discovery Client initialized at timestamp 1541664516066 with initial instances count: 0
+2018-11-08 00:08:36.070  INFO 47633 --- [           main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application CRAWLER-SERVICE with eureka with status UP
+2018-11-08 00:08:36.071  INFO 47633 --- [           main] c.n.d.DiscoveryClient                    : Saw local status change event StatusChangeEvent [timestamp=1541664516071, current=UP, previous=STARTING]
+2018-11-08 00:08:36.074  INFO 47633 --- [nfoReplicator-0] c.n.d.DiscoveryClient                    : DiscoveryClient_CRAWLER-SERVICE/sjcmac733qhtd7.hsd1.ca.comcast.net:CRAWLER-SERVICE:8083: registering service...
+2018-11-08 00:08:36.172  INFO 47633 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8083 (http) with context path ''
+2018-11-08 00:08:36.183  INFO 47633 --- [           main] c.j.f.ForumApplication                   : Started ForumApplication in 10.432 seconds (JVM running for 11.594)
+2018-11-08 00:08:36.328  INFO 47633 --- [nfoReplicator-0] c.n.d.DiscoveryClient                    : DiscoveryClient_CRAWLER-SERVICE/sjcmac733qhtd7.hsd1.ca.comcast.net:CRAWLER-SERVICE:8083 - registration status: 204

@@ -3,7 +3,7 @@ spring:
     name: CRAWLER-WORKER
   data:
     mongodb:
-      host: hs01
+      host: localhost
       database: crawler_1point3arces
 server:
   port: 8084
@@ -11,26 +11,29 @@ eureka:
   client:
     fetch-registry: true
     service-url:
-      defaultZone: http://eureka-server:8761/eureka
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: false
 feign:
   client:
     config:
       default:
-        connectTimeout: 160000000
-        readTimeout: 160000000
+        connectTimeout: 30000
+        readTimeout: 30000
   hystrix:
     enabled: true
-
-ribbon:
-  eureka:
-    enabled: true
-  MaxAutoRetries: 0
-  MaxAutoRetriesNextServer: 0
-  ReadTimeout: 10000
 hystrix:
+  threadpool:
+    default:
+      maxQueueSize: 200
+      queueSizeRejectionThreshold: 300
   command:
     default:
       execution:
+        timeout:
+          enabled: false
         isolation:
           thread:
-            timeoutInMilliseconds: 30000
+            interruptOnTimeout: false
+
+
+            

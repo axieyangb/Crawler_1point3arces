@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ import com.jerryxie.forum.comment.models.CommentDetail;
 
 @Service
 public class CommentService {
+    private Logger logger = LogManager.getLogger(CommentService.class);
+
     public CommentService() {
 
     }
@@ -34,8 +38,8 @@ public class CommentService {
         if (metaInfo.wholeText().contains("楼主")) {
             comment.setLeader(true);
         }
-        comment.setUsername(userSection.wholeText());
-        String homeSpaceUrl = userSection.attr("href");
+        comment.setUsername(userSection == null ? "Unknown" : userSection.wholeText());
+        String homeSpaceUrl = userSection == null ? "" : userSection.attr("href");
         String[] tokens = homeSpaceUrl.split("=");
         comment.setUserId(tokens[tokens.length - 1]);
         Element timeSection = metaInfo.selectFirst("em");
@@ -44,15 +48,23 @@ public class CommentService {
             setUpQuotePart(quoteSection, comment);
         }
 
-        section.selectFirst("td.t_f").children().stream().forEach(elem -> {
-            elem.remove();
-        });
-        comment.setReplyContent(section.selectFirst("td.t_f").wholeText().trim());
+        try {
+            section.selectFirst("td.t_f").children().stream().forEach(elem -> {
+                elem.remove();
+            });
+        } catch (Exception ex) {
+            logger.error(ex);
+        }
+
+        Element replyElement = section.selectFirst("td.t_f");
+        comment.setReplyContent(replyElement == null ? "" : replyElement.wholeText().trim());
+
         return comment;
     }
 
     private void setUpQuotePart(Element quoteSection, CommentDetail comment) {
-        String quoteTitle = quoteSection.selectFirst("font").wholeText();
+        Element quoteElement = quoteSection.selectFirst("font");
+        String quoteTitle = quoteElement == null ? "" : quoteElement.wholeText();
         comment.setQuoteTitle(quoteTitle);
         String quoteWholeContent = quoteSection.wholeText();
         comment.setQuoteContent(quoteWholeContent.replace(quoteTitle, "").trim());

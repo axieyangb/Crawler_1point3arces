@@ -130,13 +130,23 @@ public class PackageInfoService {
         table.select("tr").stream().forEach((element) -> {
             switch (element.child(0).text()) {
             case "找工年度:":
-                pack.setJobYear(Integer.parseInt(element.child(1).text()));
+                try {
+                    pack.setJobYear(Integer.parseInt(element.child(1).text().replaceAll("\\D+", "")));
+                } catch (Exception e) {
+                    logger.error(pack.getTid() + " : " + e);
+                }
                 break;
             case "找工季节:":
                 String monthRange = element.child(1).text().replace("月", "");
+
                 String[] tokens = monthRange.split("-");
-                pack.setJobMonthStart(Integer.parseInt(tokens[0]));
-                pack.setJobMonthEnd(Integer.parseInt(tokens[1]));
+                try {
+                    pack.setJobMonthStart(Integer.parseInt(tokens[0]));
+                    pack.setJobMonthEnd(Integer.parseInt(tokens[1]));
+                } catch (Exception ex) {
+                    logger.error(pack.getTid() + " : " + ex);
+                }
+
                 break;
             case "工作来源:":
                 pack.setJobSource(element.child(1).text());

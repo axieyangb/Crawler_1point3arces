@@ -11,7 +11,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 @EnableCircuitBreaker
 public class CrawlerWorkerApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(CrawlerWorkerApplication.class, args);
+        SpringApplication.run(CrawlerWorkerApplication.class, args).getBean(WorkerInitializer.class).initWorkerToFetchSalaryTidList();
+
     }
+
 }

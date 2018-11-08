@@ -3,7 +3,13 @@ package com.jerryxie.forum.worker.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "SalaryPackage")
 public class SalaryPackage {
+    @Id
+    private String id;
 
     public String getCurrentWork() {
         return currentWork;
@@ -11,6 +17,14 @@ public class SalaryPackage {
 
     public void setCurrentWork(String currentWork) {
         this.currentWork = currentWork;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public SalaryPackage() {
@@ -55,6 +69,24 @@ public class SalaryPackage {
 
     private int relocation;
     private List<CommentDetail> comments;
+    private long updateTime;
+    private long createTime;
+
+    public long getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(long updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public long getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(long createTime) {
+        this.createTime = createTime;
+    }
 
     public int getTid() {
         return tid;
@@ -238,14 +270,15 @@ public class SalaryPackage {
 
     @Override
     public String toString() {
-        return "SalaryPackage [tid=" + tid + ", jobYear=" + jobYear + ", jobMonthStart=" + jobMonthStart
+        return "SalaryPackage [id=" + id + ", tid=" + tid + ", jobYear=" + jobYear + ", jobMonthStart=" + jobMonthStart
                 + ", jobMonthEnd=" + jobMonthEnd + ", title=" + title + ", jobSource=" + jobSource
                 + ", positionCategory=" + positionCategory + ", jobType=" + jobType + ", degree=" + degree
                 + ", workingExperience=" + workingExperience + ", status=" + status + ", companyName=" + companyName
                 + ", currentWork=" + currentWork + ", area=" + area + ", base=" + base + ", rsu=" + rsu
                 + ", vestSchedule=" + vestSchedule + ", signOn=" + signOn + ", bonus=" + bonus + ", relocation="
-                + relocation + ", comments=" + comments + ", competeOffer=" + competeOffer + ", accept=" + accept
-                + ", annualRefresh=" + annualRefresh + ", comment=" + comment + "]";
+                + relocation + ", comments=" + comments + ", updateTime=" + updateTime + ", createTime=" + createTime
+                + ", competeOffer=" + competeOffer + ", accept=" + accept + ", annualRefresh=" + annualRefresh
+                + ", comment=" + comment + "]";
     }
 
     public void setComments(List<CommentDetail> comments) {

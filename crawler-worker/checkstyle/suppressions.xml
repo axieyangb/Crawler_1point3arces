@@ -15,6 +15,7 @@
 
     <!-- Exclude Clover instrumented sources -->
   <suppress checks="" files="/src/main/java/com/jerryxie/forum/worker/CrawlerWorkerApplication.java"/> 
+    <suppress checks="" files="/src/main/java/com/jerryxie/forum/worker/config/.*"/> 
  <suppress checks="" files=".*/models"/> 
 
 </suppressions>
