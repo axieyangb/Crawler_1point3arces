@@ -58,15 +58,15 @@ public class FetchNewWanquItemTask implements Runnable {
         });
         logger.info(String.format("tids for wanqu have been collected: %d", tids.size()));
         CountDownLatch latch = new CountDownLatch(tids.size());
-        tids.forEach(tid ->{
+        tids.forEach(tid -> {
             executor.submit(context.getBean(FetchWanquItemDetailTask.class, tid, latch));
         });
         try {
             latch.await();
         } catch (InterruptedException e) {
-           logger.error(e);
+            logger.error(e);
         }
-        
+
         logger.info("Scheduled Job for wanqu updates is finished");
     }
 

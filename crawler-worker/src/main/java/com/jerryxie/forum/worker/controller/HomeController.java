@@ -39,7 +39,7 @@ public class HomeController {
     public SalaryPackage addSalary() {
         return saveService.insertSalaryPackage(new SalaryPackage());
     }
-    
+
     @RequestMapping(value = "/wanqu/detail", method = RequestMethod.GET, produces = "application/json")
     public Post wanqu(int tid) {
         return bayareaPostService.detail(tid);

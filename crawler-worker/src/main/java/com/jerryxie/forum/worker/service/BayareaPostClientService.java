@@ -15,13 +15,13 @@ import com.jerryxie.forum.worker.domain.Post;
 public interface BayareaPostClientService {
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public List<String> getTidByPageNum(@RequestParam(value = "pagenum") int pageNum);
+    List<String> getTidByPageNum(@RequestParam(value = "pagenum") int pageNum);
 
     @RequestMapping(value = "detail/{tid}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public Post detail(@PathVariable("tid") int tid);
+    Post detail(@PathVariable("tid") int tid);
 
     @RequestMapping(value = "pagenum", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public int getPageNum();
+    int getPageNum();
 }

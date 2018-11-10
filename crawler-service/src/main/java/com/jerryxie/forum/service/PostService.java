@@ -19,7 +19,7 @@ public class PostService {
     CommonService commonService;
 
     private Logger logger = Logger.getLogger(PostService.class);
-    public final String baseUrl = "https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=%d";
+    private final String baseUrl = "https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=%d";
 
     public Document getDocumentByTid(int tid) {
         String url = String.format(baseUrl, tid);

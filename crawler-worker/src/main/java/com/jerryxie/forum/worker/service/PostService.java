@@ -18,10 +18,10 @@ public class PostService {
     public Post insertPost(Post post) {
         return this.postRepository.insert(post);
     }
-    
-    public Set<Integer> getAllPostTid(){
+
+    public Set<Integer> getAllPostTid() {
         Set<Integer> tidSet = new HashSet<>();
-        this.postRepository.findAll().forEach(post ->{
+        this.postRepository.findAll().forEach(post -> {
             tidSet.add(post.getTid());
         });
         return tidSet;
