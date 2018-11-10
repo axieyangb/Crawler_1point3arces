@@ -14,39 +14,33 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jerryxie.forum.ForumConstants;
-import com.jerryxie.forum.doubaofu.PackageInfoService;
-import com.jerryxie.forum.doubaofu.models.SalaryPackage;
+import com.jerryxie.forum.comment.models.Post;
 import com.jerryxie.forum.service.ItemListPageService;
+import com.jerryxie.forum.service.PostService;
 
 @RestController
-@RequestMapping("/doubaofu")
-public class DoubaofuController {
-    @Autowired
-    PackageInfoService packageFetcher;
+@RequestMapping("/wanqu")
+public class WanquDiscussController {
     @Autowired
     ItemListPageService itemListFetcher;
 
-    @RequestMapping(value = "detail/{tid}", method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
-    public SalaryPackage index(@PathVariable("tid") int tid) {
-        Document doc = packageFetcher.getPackagePage(tid);
-        return packageFetcher.generatePackageData(doc, tid);
-    }
+    @Autowired
+    PostService postService;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public List<String> doubaofu(@RequestParam(value = "pagenum", required = false) Optional<Integer> pageNum) {
+    public List<String> wanqu(@RequestParam(value = "pagenum", required = false) Optional<Integer> pageNum) {
         List<String> items = new ArrayList<>();
         if (pageNum.isPresent()) {
-            Document doc = itemListFetcher.getItemListPage(ForumConstants.FID_DOU_BAO_FU, pageNum.get());
+            Document doc = itemListFetcher.getItemListPage(ForumConstants.FID_WAN_QU, pageNum.get());
             items = itemListFetcher.getTidList(doc);
             return items;
         } else {
-            Document firstDoc = itemListFetcher.getItemListPage(ForumConstants.FID_DOU_BAO_FU, 1);
+            Document firstDoc = itemListFetcher.getItemListPage(ForumConstants.FID_WAN_QU, 1);
             items = itemListFetcher.getTidList(firstDoc);
             int totalPageNum = itemListFetcher.getTotalPageNum(firstDoc);
             for (int i = 2; i <= totalPageNum; i++) {
-                Document doc = itemListFetcher.getItemListPage(ForumConstants.FID_DOU_BAO_FU, i);
+                Document doc = itemListFetcher.getItemListPage(ForumConstants.FID_WAN_QU, i);
                 items.addAll(itemListFetcher.getTidList(doc));
                 System.out.println("Checking " + i + "page, current list size : " + items.size());
             }
@@ -54,10 +48,17 @@ public class DoubaofuController {
         }
     }
 
+    @RequestMapping(value = "detail/{tid}", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public Post detail(@PathVariable("tid") int tid) {
+        Document doc = postService.getDocumentByTid(tid);
+        return postService.getPostDetail(doc, tid);
+    }
+
     @RequestMapping(value = "pagenum", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public int getPageNum() {
-        Document doc = itemListFetcher.getItemListPage(ForumConstants.FID_DOU_BAO_FU, 1);
+        Document doc = itemListFetcher.getItemListPage(ForumConstants.FID_WAN_QU, 1);
         return itemListFetcher.getTotalPageNum(doc);
     }
 

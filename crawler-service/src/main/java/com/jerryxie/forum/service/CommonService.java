@@ -1,4 +1,4 @@
-package com.jerryxie.forum;
+package com.jerryxie.forum.service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,8 +10,10 @@ import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jerryxie.forum.ForumConstants;
+
 @Service
-public class ForumCommonService {
+public class CommonService {
     @Autowired
     SSLSocketFactory sslSocketFactory;
 

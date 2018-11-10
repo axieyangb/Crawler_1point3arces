@@ -10,10 +10,11 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 public class ExecutorConfiguration {
 
     private final int poolSize = 100;
+    private final int schedulePoolSize = 20;
 
     @Bean
     public ScheduledThreadPoolExecutor getScheduledThreadPoolExecutor() {
-        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
+        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(schedulePoolSize);
         return executor;
     }
 

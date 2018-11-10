@@ -12,14 +12,14 @@ import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jerryxie.forum.ForumCommonService;
-import com.jerryxie.forum.comment.CommentService;
 import com.jerryxie.forum.comment.models.CommentDetail;
 import com.jerryxie.forum.doubaofu.models.SalaryPackage;
 import com.jerryxie.forum.doubaofu.models.SalaryPackage.Decision;
 import com.jerryxie.forum.doubaofu.models.SalaryPackage.JobType;
 import com.jerryxie.forum.doubaofu.models.SalaryPackage.MaxDegree;
 import com.jerryxie.forum.doubaofu.models.SalaryPackage.Status;
+import com.jerryxie.forum.service.CommentService;
+import com.jerryxie.forum.service.CommonService;
 
 @Service
 public class PackageInfoService {
@@ -31,7 +31,7 @@ public class PackageInfoService {
     private Logger logger = LogManager.getLogger(PackageInfoService.class);
 
     @Autowired
-    ForumCommonService commonService;
+    CommonService commonService;
 
     @Autowired
     CommentService commentService;

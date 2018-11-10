@@ -1,4 +1,4 @@
-package com.jerryxie.forum.comment;
+package com.jerryxie.forum.service;
 
 import java.util.ArrayList;
 import java.util.Calendar;

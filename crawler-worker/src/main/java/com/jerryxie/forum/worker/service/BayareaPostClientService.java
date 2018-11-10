@@ -9,18 +9,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jerryxie.forum.worker.client.salary.SalaryPackageClientFallbackFactory;
-import com.jerryxie.forum.worker.domain.SalaryPackage;
+import com.jerryxie.forum.worker.domain.Post;
 
-@FeignClient(value = "crawler-service:8083/doubaofu", fallbackFactory = SalaryPackageClientFallbackFactory.class)
-public interface SalaryPackageClientService {
-    @RequestMapping(value = "detail/{tid}", method = RequestMethod.GET)
-    SalaryPackage findPackageByDetail(@PathVariable(name = "tid", required = true) int tid);
-
+@FeignClient("crawler-service:8083/wanqu")
+public interface BayareaPostClientService {
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
-    List<String> doubaofu(@RequestParam(value = "pagenum") int pageNum);
+    @ResponseBody
+    public List<String> getTidByPageNum(@RequestParam(value = "pagenum") int pageNum);
+
+    @RequestMapping(value = "detail/{tid}", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public Post detail(@PathVariable("tid") int tid);
 
     @RequestMapping(value = "pagenum", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    int getPageNum();
+    public int getPageNum();
 }

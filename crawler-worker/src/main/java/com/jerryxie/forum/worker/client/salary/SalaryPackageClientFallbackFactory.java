@@ -1,4 +1,4 @@
-package com.jerryxie.forum.worker.client;
+package com.jerryxie.forum.worker.client.salary;
 
 import org.springframework.stereotype.Component;
 

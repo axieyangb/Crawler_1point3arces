@@ -1,4 +1,4 @@
-package com.jerryxie.forum.worker.taskitem;
+package com.jerryxie.forum.worker.task.wanqu;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -7,24 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.jerryxie.forum.worker.service.SalaryPackageClientService;
+import com.jerryxie.forum.worker.service.BayareaPostClientService;
 
 @Component
 @Scope("prototype")
-public class FetchSalaryItemPerPageTask implements Callable<List<String>> {
+public class FetchWanquTidItemPerPageTask implements Callable<List<String>> {
     @Autowired
-    SalaryPackageClientService salaryPackageClientService;
+    private BayareaPostClientService postClientService;
 
     private int pageNum;
 
-    public FetchSalaryItemPerPageTask(int pageNum) {
+    public FetchWanquTidItemPerPageTask(int pageNum) {
         this.pageNum = pageNum;
     }
 
     @Override
     public List<String> call() throws Exception {
-        List<String> tids = salaryPackageClientService.doubaofu(pageNum);
-        return tids;
+        return postClientService.getTidByPageNum(pageNum);
     }
 
 }

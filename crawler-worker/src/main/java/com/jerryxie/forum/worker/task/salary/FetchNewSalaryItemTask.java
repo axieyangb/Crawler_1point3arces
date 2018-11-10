@@ -1,4 +1,4 @@
-package com.jerryxie.forum.worker.taskitem;
+package com.jerryxie.forum.worker.task.salary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +54,7 @@ public class FetchNewSalaryItemTask implements Runnable {
                 logger.error(e);
             }
         }
-        logger.info(String.format("tids have been collected: %d", tids.size()));
+        logger.info(String.format("tids for salary have been collected: %d", tids.size()));
 
         CountDownLatch doneSignal = new CountDownLatch(tids.size());
         tids.forEach(tid -> {
@@ -66,7 +66,7 @@ public class FetchNewSalaryItemTask implements Runnable {
         } catch (InterruptedException e) {
             logger.error(e);
         }
-        logger.info("Scheduled Job is finished");
+        logger.info("Scheduled Job for salary updates is finished");
     }
 
 }

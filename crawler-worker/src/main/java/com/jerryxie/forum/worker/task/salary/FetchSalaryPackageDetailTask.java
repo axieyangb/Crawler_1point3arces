@@ -1,4 +1,4 @@
-package com.jerryxie.forum.worker.taskitem;
+package com.jerryxie.forum.worker.task.salary;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -22,6 +22,7 @@ public class FetchSalaryPackageDetailTask implements Runnable {
     SalaryPackageService salaryPackageService;
 
     private CountDownLatch latch;
+
     public FetchSalaryPackageDetailTask(int tid, CountDownLatch latch) {
         this.tid = tid;
         this.latch = latch;

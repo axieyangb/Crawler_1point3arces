@@ -92,13 +92,21 @@
 2018-11-08 00:08:24.216  INFO 47208 --- [nio-8761-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 21 ms
 2018-11-08 00:08:36.322  INFO 47208 --- [nio-8761-exec-3] c.n.e.registry.AbstractInstanceRegistry  : Registered instance CRAWLER-SERVICE/sjcmac733qhtd7.hsd1.ca.comcast.net:CRAWLER-SERVICE:8083 with status UP (replication=false)
 2018-11-08 00:08:37.038  INFO 47208 --- [nio-8761-exec-4] c.n.e.registry.AbstractInstanceRegistry  : Registered instance CRAWLER-SERVICE/sjcmac733qhtd7.hsd1.ca.comcast.net:CRAWLER-SERVICE:8083 with status UP (replication=true)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                           2018-11-08 00:08:15.234  INFO 46345 --- [      Thread-15] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1ed4004b: startup date [Thu Nov 08 00:04:16 PST 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@28f67ac7
-2018-11-08 00:08:15.240  INFO 46345 --- [      Thread-15] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application EUREKA-SERVER with eureka with status DOWN
-2018-11-08 00:08:15.252  INFO 46345 --- [nio-8761-exec-5] c.n.e.registry.AbstractInstanceRegistry  : Registered instance CRAWLER-SERVICE/sjcmac733qhtd7.hsd1.ca.comcast.net:CRAWLER-SERVICE:8083 with status DOWN (replication=false)
-2018-11-08 00:08:15.255  INFO 46345 --- [      Thread-15] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 0
-2018-11-08 00:08:15.258  INFO 46345 --- [      Thread-15] c.n.eureka.DefaultEurekaServerContext    : Shutting down ...
-2018-11-08 00:08:15.265  INFO 46345 --- [      Thread-15] c.n.eureka.DefaultEurekaServerContext    : Shut down
-2018-11-08 00:08:15.271  INFO 46345 --- [      Thread-15] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
-2018-11-08 00:08:15.273  INFO 46345 --- [      Thread-15] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
-2018-11-08 00:08:15.287  INFO 46345 --- [      Thread-15] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
-2018-11-08 00:08:15.287  INFO 46345 --- [      Thread-15] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2018-11-08 00:09:24.072  INFO 47208 --- [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2018-11-08 00:10:24.072  INFO 47208 --- [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2018-11-08 00:11:24.077  INFO 47208 --- [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 5ms
+2018-11-08 00:12:24.077  INFO 47208 --- [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2018-11-08 00:13:24.080  INFO 47208 --- [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2018-11-08 00:14:24.084  INFO 47208 --- [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 4ms
+2018-11-08 00:15:24.084  INFO 47208 --- [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 0ms
+2018-11-08 00:16:24.087  INFO 47208 --- [a-EvictionTimer] c.n.e.registry.AbstractInstanceRegistry  : Running the evict task with compensationTime 3ms
+2018-11-08 00:17:01.186  INFO 47208 --- [      Thread-15] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@cb644e: startup date [Thu Nov 08 00:08:17 PST 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@1888ff2c
+2018-11-08 00:17:01.190  INFO 47208 --- [      Thread-15] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application EUREKA-SERVER with eureka with status DOWN
+2018-11-08 00:17:01.199  INFO 47208 --- [nio-8761-exec-1] c.n.e.registry.AbstractInstanceRegistry  : Registered instance CRAWLER-SERVICE/sjcmac733qhtd7.hsd1.ca.comcast.net:CRAWLER-SERVICE:8083 with status DOWN (replication=false)
+2018-11-08 00:17:01.204  INFO 47208 --- [      Thread-15] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 0
+2018-11-08 00:17:01.207  INFO 47208 --- [      Thread-15] c.n.eureka.DefaultEurekaServerContext    : Shutting down ...
+2018-11-08 00:17:01.216  INFO 47208 --- [      Thread-15] c.n.eureka.DefaultEurekaServerContext    : Shut down
+2018-11-08 00:17:01.220  INFO 47208 --- [      Thread-15] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-08 00:17:01.222  INFO 47208 --- [      Thread-15] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-08 00:17:01.234  INFO 47208 --- [      Thread-15] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2018-11-08 00:17:01.234  INFO 47208 --- [      Thread-15] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient

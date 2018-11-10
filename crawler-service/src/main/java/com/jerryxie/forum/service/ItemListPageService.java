@@ -1,4 +1,4 @@
-package com.jerryxie.forum.doubaofu;
+package com.jerryxie.forum.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,17 +12,15 @@ import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jerryxie.forum.ForumCommonService;
-
 @Service
 public class ItemListPageService {
-    private final String baseUrl = "https://www.1point3acres.com/bbs/forum.php?mod=forumdisplay&fid=237&sortid=320&sortid=320&page=%d";
+    private final String baseUrl = "https://www.1point3acres.com/bbs/forum.php?mod=forumdisplay&fid=%d&page=%d";
     private Logger logger = LogManager.getLogger(ItemListPageService.class);
     @Autowired
-    ForumCommonService commonService;
+    CommonService commonService;
 
-    public Document getItemListPage(int pageNum) {
-        String url = String.format(baseUrl, pageNum);
+    public Document getItemListPage(int fid, int pageNum) {
+        String url = String.format(baseUrl, fid, pageNum);
         try {
             return commonService.getConnection(url).get();
         } catch (IOException e) {

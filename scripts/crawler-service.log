@@ -56,3 +56,23 @@
 2018-11-08 00:08:36.172  INFO 47633 --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8083 (http) with context path ''
 2018-11-08 00:08:36.183  INFO 47633 --- [           main] c.j.f.ForumApplication                   : Started ForumApplication in 10.432 seconds (JVM running for 11.594)
 2018-11-08 00:08:36.328  INFO 47633 --- [nfoReplicator-0] c.n.d.DiscoveryClient                    : DiscoveryClient_CRAWLER-SERVICE/sjcmac733qhtd7.hsd1.ca.comcast.net:CRAWLER-SERVICE:8083 - registration status: 204
+2018-11-08 00:09:06.061  INFO 47633 --- [freshExecutor-0] c.n.d.DiscoveryClient                    : Disable delta property : false
+2018-11-08 00:09:06.061  INFO 47633 --- [freshExecutor-0] c.n.d.DiscoveryClient                    : Single vip registry refresh property : null
+2018-11-08 00:09:06.061  INFO 47633 --- [freshExecutor-0] c.n.d.DiscoveryClient                    : Force full registry fetch : false
+2018-11-08 00:09:06.062  INFO 47633 --- [freshExecutor-0] c.n.d.DiscoveryClient                    : Application is null : false
+2018-11-08 00:09:06.062  INFO 47633 --- [freshExecutor-0] c.n.d.DiscoveryClient                    : Registered Applications size is zero : true
+2018-11-08 00:09:06.062  INFO 47633 --- [freshExecutor-0] c.n.d.DiscoveryClient                    : Application version is -1: false
+2018-11-08 00:09:06.062  INFO 47633 --- [freshExecutor-0] c.n.d.DiscoveryClient                    : Getting all instance registry info from the eureka server
+2018-11-08 00:09:06.119  INFO 47633 --- [freshExecutor-0] c.n.d.DiscoveryClient                    : The response status is 200
+2018-11-08 00:09:39.077  INFO 47633 --- [nio-8083-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2018-11-08 00:09:39.078  INFO 47633 --- [nio-8083-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2018-11-08 00:09:39.089  INFO 47633 --- [nio-8083-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 11 ms
+2018-11-08 00:09:57.841 ERROR 47633 --- [nio-8083-exec-8] c.j.f.c.CommentService                   : java.lang.NullPointerException
+2018-11-08 00:13:35.486  INFO 47633 --- [trap-executor-0] c.n.d.s.r.a.ConfigClusterResolver        : Resolving eureka endpoints via configuration
+2018-11-08 00:17:01.189  INFO 47633 --- [       Thread-8] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application CRAWLER-SERVICE with eureka with status DOWN
+2018-11-08 00:17:01.190  WARN 47633 --- [       Thread-8] c.n.d.DiscoveryClient                    : Saw local status change event StatusChangeEvent [timestamp=1541665021190, current=DOWN, previous=UP]
+2018-11-08 00:17:01.190  INFO 47633 --- [nfoReplicator-0] c.n.d.DiscoveryClient                    : DiscoveryClient_CRAWLER-SERVICE/sjcmac733qhtd7.hsd1.ca.comcast.net:CRAWLER-SERVICE:8083: registering service...
+2018-11-08 00:17:01.197  INFO 47633 --- [       Thread-8] o.s.s.c.ThreadPoolTaskExecutor           : Shutting down ExecutorService 'applicationTaskExecutor'
+2018-11-08 00:17:01.203  INFO 47633 --- [nfoReplicator-0] c.n.d.DiscoveryClient                    : DiscoveryClient_CRAWLER-SERVICE/sjcmac733qhtd7.hsd1.ca.comcast.net:CRAWLER-SERVICE:8083 - registration status: 204
+2018-11-08 00:17:01.210  INFO 47633 --- [       Thread-8] c.n.d.DiscoveryClient                    : Shutting down DiscoveryClient ...
+2018-11-08 00:17:01.214  WARN 47633 --- [       Thread-8] .s.c.a.CommonAnnotationBeanPostProcessor : Destroy method on bean with name 'scopedTarget.eurekaClient' threw an exception: org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'eurekaInstanceConfigBean': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
